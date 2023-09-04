@@ -67,7 +67,7 @@ export default class App extends React.Component {
 
   //A differenza della funzione "handleDelete", che prende in ingresso (cardId),
   //farò una funzione chiamata "handleIncrement", che prende in ingresso tutta la card (card)
-  handleIncrement = (card, segno) => {
+  handleIncrDecr = (card, segno) => {
     const cards = [...this.state.cards];
     const id = cards.indexOf(card);
     cards[id] = { ...card };
@@ -88,12 +88,12 @@ export default class App extends React.Component {
         <div className="container">
           <h1>Cosa desideri ordinare?</h1>
           <hr />
-          <div className="row">
+          <div className="row gap-3">
             {this.state.cards.map((card) => (
               <Card
                 key={card.id}
                 onDelete={this.handleDelete}
-                onIncrement={this.handleIncrement}
+                onIncrDecr={this.handleIncrDecr}
                 card={card}
               />
             ))}

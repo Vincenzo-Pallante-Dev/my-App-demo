@@ -5,26 +5,25 @@ export default class Card extends React.Component {
     return (
       <div className="col">
         <div className="card" style={{ width: "18rem", textAlign: "center" }}>
-          <div
-          // onClick={() => this.props.onIncrement(this.props.card)}
-          // className="btn btn-primary"
-          >
+          <div className="p-2">
+            Add
             <button
-              onClick={() => this.props.onIncrement(this.props.card, "+")}
+              onClick={() => this.props.onIncrDecr(this.props.card, "+")}
               className="btn btn-primary"
             >
               +
             </button>
+            Quant:{" "}
+            <span className="badje badje-light">
+              {this.props.card.quantità}
+            </span>
             <button
-              onClick={() => this.props.onIncrement(this.props.card, "-")}
+              onClick={() => this.props.onIncrDecr(this.props.card, "-")}
               className="btn btn-primary"
             >
               -
             </button>
-            Aggiungi{" "}
-            <span className="badje badje-light">
-              {this.props.card.quantità}
-            </span>
+            Delete
           </div>
           <img
             src={this.props.card.immagine}
