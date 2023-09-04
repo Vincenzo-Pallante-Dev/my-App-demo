@@ -51,18 +51,33 @@ export default class App extends React.Component {
     // const updatedCards = this.state.cards.filter((card) => card.id !== cardId);
     // this.setState({ cards: updatedCards });
     //oppure, se alla mia const updateCards gli do lo stesso nome della key cards,
-    const cards = this.state.cards.filter((card) => card.id !== cardId);
+    // const cards = this.state.cards.filter((card) => card.id !== cardId);
     //posso scriverla cosi:
-    this.setState({ cards });
+    let card = this.state.cards.find((card) => card.id == cardId);
+    if (card.quantità > 0) {
+      if (window.confirm("Sei Seguro di voler eliminare?") == true) {
+        const cards = this.state.cards.filter((card) => card.id !== cardId);
+        this.setState({ cards });
+      }
+    } else {
+      const cards = this.state.cards.filter((card) => card.id !== cardId);
+      this.setState({ cards });
+    }
   };
 
   //A differenza della funzione "handleDelete", che prende in ingresso (cardId),
   //farò una funzione chiamata "handleIncrement", che prende in ingresso tutta la card (card)
-  handleIncrement = (card) => {
+  handleIncrement = (card, segno) => {
     const cards = [...this.state.cards];
     const id = cards.indexOf(card);
     cards[id] = { ...card };
-    cards[id].quantità++;
+    if (segno == "+") {
+      cards[id].quantità++;
+    } else {
+      if (cards[id].quantità > 0) {
+        cards[id].quantità--;
+      }
+    }
     this.setState({ cards });
   };
 
