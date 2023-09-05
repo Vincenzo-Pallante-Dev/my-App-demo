@@ -56,14 +56,17 @@ export default class App extends React.Component {
     let card = this.state.cards.find((card) => card.id == cardId);
     if (card.quantità > 0) {
       if (window.confirm("Sei Seguro di voler eliminare?") == true) {
-        const cards = this.state.cards.filter((card) => card.id !== cardId);
-        this.setState({ cards });
+        this.securityCheck(cardId);
       }
     } else {
-      const cards = this.state.cards.filter((card) => card.id !== cardId);
-      this.setState({ cards });
+      this.securityCheck(cardId);
     }
   };
+
+  securityCheck(cardId) {
+    const cards = this.state.cards.filter((card) => card.id !== cardId);
+    this.setState({ cards });
+  }
 
   //A differenza della funzione "handleDelete", che prende in ingresso (cardId),
   //farò una funzione chiamata "handleIncrement", che prende in ingresso tutta la card (card)
